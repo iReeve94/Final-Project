@@ -8,59 +8,70 @@ const register = async (req, res) => {
   try {
     let { email, password } = req.body;
     if (!email || !password) {
-      return res
-        .status(400)
-        .send({ msg: "Both email and password are required" });
+      return res.status(400).send({ msg: "Both email and password are required." });
     }
 
-    let userFound = await User.findOne({ email });
     let adminFound = await Admin.findOne({ email });
-    if (userFound || adminFound) {
-      return res.status(409).send({ msg: "Email already exists" });
+    let userFound = await User.findOne({ email });
+
+    if (userFound && userFound.password || adminFound && adminFound.password) {
+      return res.send({ msg: "Email already registered, try another email"});
     }
 
     const realAdmin = email === process.env.ADMIN_EMAIL;
-
     let hashPassword = await bcrypt.hash(password, +process.env.SALT_ROUND);
- 
+
     if (realAdmin) {
       await Admin.create({ email, password: hashPassword });
     } else {
       await User.create({ email, password: hashPassword });
     }
-    return res.status(201).send({ msg: "Registered successfully" });
+
+    return res.send({ msg: "Registered successfully" });
   } catch (error) {
-    res.status(500).send({ msg: "Internal server error qq" });
+    res.status(500).send({ msg: "Internal server error" });
   }
 };
 
-const login = async (req, res) => {
-  try {
-    let { email, password } = req.body;
-    if (!email || !password) {
-      return res
-        .status(400)
-        .send({ msg: "Both email and password are required" });
-    }
 
-    let user = await User.findOne({ email });
-    let adminUser = await Admin.findOne({ email });
-    if (!user || !adminUser) {
-      const users = user || adminUser;
-      let validPassword = await bcrypt.compare(password, users.password);
-      if (!validPassword) {
-        return res.status(401).send({ msg: "Invalid email or password" });
-    } else {
-      let token = jwt.sign(
-        { email: users.email, id: users._id },
-        process.env.PRIVATE_KEY
-      );
-      res.status(200).send({ msg: "Login successful", token });
+
+  const login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      if (!email || !password) {
+        return res
+          .status(400)
+          .send({ msg: "Both email and password are required." });
+      }
+  
+      let adminUser = await Admin.findOne({ email });
+      let simpleUser = await User.findOne({ email });
+  
+      if (adminUser || simpleUser) {
+        let user = adminUser || simpleUser;
+        let validPassword = await bcrypt.compare(password, user.password);
+  
+        if (!validPassword) {
+          return res.status(401).send({ msg: "Invalid password" });
+        } else {
+          let token = jwt.sign(
+            {
+              email: user.email,
+              id: user._id,
+            },
+            process.env.PRIVATE_KEY,
+            { expiresIn: "1h" }
+          );
+          res.status(200).send({ msg: "Logged in successfully.", token });
+        }
+      } else {
+        return res.status(404).send({ msg: "Invalid email." });
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ msg: "Internal server error. Login failed." });
     }
-    }
-  } catch (error) {
-    res.status(500).send({ msg: "Internal server error gg" });
-  }
-};
+  };
 
 module.exports = { register, login };

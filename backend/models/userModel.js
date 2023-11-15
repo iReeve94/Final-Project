@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-});
+},{timestamps:true});
  
 
 const adminSchema =  new mongoose.Schema({
@@ -20,14 +20,14 @@ const adminSchema =  new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        default: process.env.ADMIN_EMAIL,
+        default: "admin@gmail.com",
     },
     password: {
         type: String,
         required: true,
-        default: process.env.ADMIN_PASSWORD,
+        default: "123",
     },
-});
+}); 
 
 const User = mongoose.model("User", userSchema);
 const Admin =  mongoose.model("Admin", adminSchema);
