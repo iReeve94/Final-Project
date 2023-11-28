@@ -1,6 +1,5 @@
 const Item = require("../models/itemModel");
 const Category = require("../models/categoryModel"); // Import the Category model
-const cloudinary = require("../cloudinary");
 require("dotenv").config();
 
 const getItemsByCategory = async (req, res) => {
@@ -38,7 +37,7 @@ const createItem = async (req, res) => {
       return res.status(403).send({ msg: "Unauthorized to create items" });
     }
 
-    let { title, description, price, category } = req.body;
+    let { title, description, price, imageUrl, category } = req.body;
 
     // Check if the category already exists
     let categoryObject = await Category.findOne({ name: category });
@@ -52,6 +51,7 @@ const createItem = async (req, res) => {
       title,
       price,
       description,
+      imageUrl,
       category: categoryObject._id,
     };
 

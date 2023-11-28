@@ -1,0 +1,29 @@
+.form1 {
+    width: 100%;
+    max-width: 500px; /* Adjust this as needed */
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Space between rows */
+}
+
+#createInput {
+    margin-right: 10px; /* Space between label and input */
+}
+
+#createInput[type="text"] {
+    flex-grow: 1;
+}
+
+.addItemtBtn {
+    width: 100%; /* Button takes the full width */
+
+}
+
+.addItemtBtn:hover{
+    background-color:rgb(0, 183, 255);
+}

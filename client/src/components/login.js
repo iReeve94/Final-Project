@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 
 
@@ -27,29 +28,38 @@ async function handleLogin(e) {
 
 
 return (
-    <div className="login">
-        <h1>Login Form</h1>
-        <form className="login-form" onSubmit={handleLogin}>
+    <div className="login-container">
+      <div className="login-center">
+        <div className="login-form-container">
+          <h1>Login Form</h1>
+          <form className="login-form" onSubmit={handleLogin}>
             <label htmlFor="email">Email</label>
-            <input 
-                id="email"
-                type="email"
-                value={email}
-                placeholder="Enter your email"
-                onChange={(e) => setEmail(e.target.value)}
+            <input
+              className="login-input"
+              id="email"
+              type="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
-            <label htmlFor="password">Password</label>
-            <input 
-                id="pass"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            <label id="loglabel" htmlFor="password">Password</label>
+            <input
+              className="login-input"
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            <button type="submit">Log in</button>
-        </form>
+            <button className="loginBtn" type="submit">
+              Log in
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-)
-}
-
+  );
+};
 export default Login;

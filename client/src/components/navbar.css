@@ -1,9 +1,40 @@
 .navContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 70px;
     padding: 20px;
+    margin-left: 2px;
+    background-color: #f1e4e4;
+    
+    
 }
 
 
+.links{
+    color: rgb(4, 23, 77);
+    padding-right: 70px;
+    text-decoration: none; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+  }
+
+
+  .logo {
+    padding-right: 600px;
+    height: 200px;
+    width: 200px;
+  }
+
+  .logout {
+    color: rgb(187, 24, 24);
+    padding-right: 70px;
+    text-decoration: none; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+  }
+
+  .links:hover {
+    color: rgb(24, 187, 187);
+    text-decoration: underline;
+  }

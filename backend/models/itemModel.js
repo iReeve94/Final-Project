@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const itemSchema = new mongoose.Schema(
   {
     title: String,
-    price: String,
+    price: Number,
     description: String,
-    imgURL: String,
+    imageUrl: String,
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",

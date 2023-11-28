@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './signUp.css';
 
 
 function SignUp() {
@@ -15,27 +16,31 @@ async function handleRegister(e) {
 }
 
 return (
-    <div className="sign-form">
+    <div className="sign-container">
+        <div className="signUpn-center">
+        <div className="signUp-form-container">
         <h1>Sign Up</h1>
         <form className="signUpForm" onSubmit={handleRegister}>
             <label htmlFor="userEmail">Email</label>
             <input
-                id="userEmail"
+                className="signUp-input"
                 type="email"
                 value={email}
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="password">Password</label>
+            <label  id="loglabel" htmlFor="password">Password</label>
             <input 
-                id="password"
+                className="signUp-input"
                 type="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit">Sign up</button>
+            <button className="signUpBtn" type="submit">Sign up</button>
         </form>
+        </div>
+        </div>
     </div>
 )
 };

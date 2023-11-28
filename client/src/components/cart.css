@@ -1,0 +1,41 @@
+.imgedit2 {
+    height: 200px;
+    width: 200px;
+}
+
+#checkout {
+    color: #000000;
+    font-size: 15px;
+    background-color: #22e62c;
+    border: 1px solid #f39c12;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all .1s;
+}
+
+#checkout:active {
+    position: relative;
+    top: 2px;
+   }
+
+
+#remove {
+    color: #ffffff;
+    font-size: 12px;
+    background-color: #af4c4c;
+    border: 1px solid #af4c4c;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all .1s;
+}
+
+
+#clear {
+    color: #ffffff;
+    font-size: 12px;
+    background-color: #2287e6;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all .1s;
+}

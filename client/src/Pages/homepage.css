@@ -1,0 +1,55 @@
+body {
+    background-color: rgb(221, 202, 178);
+}
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-left: 150px;
+  }
+  
+  .header-content {
+    flex-grow: 1; 
+  }
+
+
+  .logohome {
+    max-width: 500px;
+    max-height: 500px;
+    margin-right: 10px; 
+  }
+  
+  .welcome-message {
+    border: 1px solid black;
+    border-radius: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    max-width: 500px;
+   margin-left: 150px;
+    line-height: 1.5;
+  }
+  
+  .featured-products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .explore-link {
+    display: block;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+  }
+
+
+.h2home {
+    margin-right: 400px;
+}
